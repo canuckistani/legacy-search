@@ -12,9 +12,11 @@ var collected = [];
 
 var current = 0, limit = false;
 
+// test
+// limit = 4;
+
 page.onLoadFinished = function(status) {
   if (status === 'success') {
-
     if (!limit) {
       limit = page.evaluate(function() {
         return parseInt(jQuery('li.pager-last a').attr('href').split('=').pop(), 10);
@@ -24,22 +26,32 @@ page.onLoadFinished = function(status) {
       return document.location.href;
     });
 
-    console.log(location);
-    console.log(current+'/'+limit);
+    // console.log(location);
+    // console.log(current+'/'+limit);
 
     var beers = page.evaluate(function() {
       var ret = [];
-      jQuery('.beer > h2 > a').each(function() {
-        ret.push([this.textContent.toLowerCase(), this.href]);
+
+      jQuery('div.beer').each(function() {
+          var stock = parseInt(jQuery(this)
+             .find('.field-name-commerce-stock .even')
+             .html(), 10);
+
+          if (stock > 0) {
+            var url = document.location.origin+jQuery(this).find('h2 > a').attr('href');
+            var origin = jQuery(this).find('.field-name-field-country .even a').html();
+            var name = jQuery(this).find('h2 > a').text().toLowerCase();
+            ret.push([name+' ('+origin+')', stock, url]);
+          }
       });
+
       return ret;
     });
-    // console.log(pp(beers));
 
-    
+    collected = collected.concat(beers);
 
     if (current < limit) {
-      console.log('incrementing current...');
+      // console.log('incrementing current...');
       current++;
       page.evaluate(function() {
         document.location = jQuery('li.pager-next a').attr('href');

@@ -20,27 +20,21 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="lib/underscore-min.js"></script>
   <script type="text/javascript">
-
-  function normalizeData(json) {
-    var tableData = [];
-    _.each(beers_raw, function(rows) {
-        _.each(rows, function(row) {
-          var _row = [row[0], '<a target="_blank" href="'+row[1]+'">Link</a>'];
-          tableData.push(_row);
-        })
-    });
-    return tableData;
-  }
-
   var beers_raw;
   $(function() {
     $.getJSON('/mock/beers.json', function(json) {
       beers_raw = json;
       $('#beer-table').dataTable({
-        "aaData": normalizeData(json),
+        "aaData": json,
         "aoColumns": [
           { "sTitle": "Name" },
-          { "sTitle": "Link" },
+          { "sTitle": "Stock" },
+          { 
+            "sTitle": "Link",
+            "fnRender": function(o) {
+              return '<a href="'+o+'" target="_blank">Link</a>'
+            }
+          },
         ]
       });
     });
