@@ -13,32 +13,23 @@
 <body>
 <div class="container">
   <h1 class="text">Search Beers ( Legacy Liquor Store )</h1>
-  <table cellpadding="0" cellspacing="0" border="0" class="display" id="beer-table"></table>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-8">
+      <table cellpadding="0" cellspacing="0" border="0" class="display" id="beer-table"></table>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <h3>Selected Beers</h3>
+      <ul id="sel-beer=list">
+      </ul>
+    </div>
+  </div>
+
 </div>
   <script src="./lib/jquery.js"></script>
   <script src="./lib/jquery.dataTables.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="lib/underscore-min.js"></script>
-  <script type="text/javascript">
-  var beers_raw;
-  $(function() {
-    $.getJSON('/mock/beers.json', function(json) {
-      beers_raw = json;
-      $('#beer-table').dataTable({
-        "aaData": json,
-        "aoColumns": [
-          { "sTitle": "Name" },
-          { "sTitle": "Stock" },
-          { 
-            "sTitle": "Link",
-            "fnRender": function(o) {
-              return '<a href="'+o+'" target="_blank">Link</a>'
-            }
-          },
-        ]
-      });
-    });
-  });
-  </script>
+  <script type="text/javascript" src="./app.js"></script>
 </body>
 </html>
