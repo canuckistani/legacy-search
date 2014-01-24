@@ -13,6 +13,24 @@ function fetchData(callback) {
 var beersHashMap = {};
 // var beerOrder;
 
+
+var OrderModel = function() {
+  this._db = new PouchDB('beerOrder');
+  var self = this;
+};
+
+OrderModel.prototype = {
+  add: function(id, data) {
+    
+  },
+  remove: function(id) {
+
+  },
+  clear: function() {
+
+  }
+};
+
 function initTable(json) {
   var data = _.map(json, function(a) {
       var _id = a[0].toLowerCase().replace(/\ /g, '-');
