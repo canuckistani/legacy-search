@@ -19,7 +19,11 @@ page.onLoadFinished = function(status) {
   if (status === 'success') {
     if (!limit) {
       limit = page.evaluate(function() {
-        return parseInt(jQuery('li.pager-last a').attr('href').split('=').pop(), 10);
+        return parseInt(jQuery('li.pager-last a')
+                        .attr('href')
+                        .replace(/[\(\)]/, '')
+                        .split('=')
+                        .pop(), 10);
       });
     }
     var location = page.evaluate(function() {
@@ -41,7 +45,8 @@ page.onLoadFinished = function(status) {
             var url = document.location.origin+jQuery(this).find('h2 > a').attr('href');
             var origin = jQuery(this).find('.field-name-field-country .even a').html();
             var name = jQuery(this).find('h2 > a').text().toLowerCase();
-            ret.push([name+' ('+origin+')', stock, url]);
+            var price = jQuery(this).find('.field-name-commerce-price .even').html();
+            ret.push([name, origin, price, stock, url]);
           }
       });
 
@@ -58,7 +63,8 @@ page.onLoadFinished = function(status) {
       });
     }
     else {
-      console.log(JSON.stringify(collected));
+     console.log(JSON.stringify(collected));
+     // console.log(pp(collected));
       phantom.exit();
     }
   }

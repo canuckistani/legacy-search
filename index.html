@@ -20,8 +20,9 @@
     </div>
     <div class="col-xs-6 col-md-4">
       <h3>Selected Beers</h3>
-      <ul id="sel-beer=list">
-      </ul>
+      <button id="clear-selected">Clear Selected</button> 
+      <button id="export-selected">Export Order</button>
+      <ul id="sel-beer-list"></ul>
     </div>
   </div>
 
@@ -30,6 +31,7 @@
   <script src="./lib/jquery.dataTables.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="lib/underscore-min.js"></script>
+  <script src="lib/pouchdb-1.1.0.min.js"></script>
   <script type="text/javascript" src="./app.js"></script>
 </body>
 </html>
