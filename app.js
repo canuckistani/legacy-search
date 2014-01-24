@@ -11,25 +11,9 @@ function fetchData(callback) {
 // --
 
 var beersHashMap = {};
-// var beerOrder;
+var beerOrder = new EventEmitter();
 
 
-var OrderModel = function() {
-  this._db = new PouchDB('beerOrder');
-  var self = this;
-};
-
-OrderModel.prototype = {
-  add: function(id, data) {
-    
-  },
-  remove: function(id) {
-
-  },
-  clear: function() {
-
-  }
-};
 
 function initTable(json) {
   var data = _.map(json, function(a) {
