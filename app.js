@@ -13,8 +13,6 @@ function fetchData(callback) {
 var beersHashMap = {};
 var beerOrder = new EventEmitter();
 
-
-
 function initTable(json) {
   var data = _.map(json, function(a) {
       var _id = a[0].toLowerCase().replace(/\ /g, '-');

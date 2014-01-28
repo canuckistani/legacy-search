@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title Page</title>
+    <meta charset=utf-8>
+    <meta name=description content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+
+  </head>
+  <body>    
+    <div id="mocha"></div>
+    <script src="./test/mocha.js"></script>
+    <script src="./test/chai.js"></script>
+    <script>
+    var expect = chai.expect;
+
+    mocha.setup({
+        ui: 'bdd',
+        ignoreLeaks: true
+    });
+
+    onload = function () {
+        mocha.run();
+    };
+    </script>
+    <script src="./binder.js"></script>
+    <script src="./test-binder.js"></script>
+  </body>
+</html>
