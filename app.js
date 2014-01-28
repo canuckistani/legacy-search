@@ -33,8 +33,8 @@ function initTable(json) {
     "aoColumns": [
       { "sTitle": "Name", "sWidth": "47%" },
       { "sTitle": "Origin" },
-      { "sTitle": "Stock" },
       { "sTitle": "Price" },
+      { "sTitle": "Stock" },
       {
         "sTitle": "Link",
         "fnRender": function(o) {
