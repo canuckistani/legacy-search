@@ -59,7 +59,7 @@ page.onLoadFinished = function(status) {
       // console.log('incrementing current...');
       current++;
       page.evaluate(function() {
-        document.location = jQuery('li.pager-next a').attr('href');
+        document.location = document.location.origin+jQuery('li.pager-next a').attr('href');
       });
     }
     else {
