@@ -44,7 +44,7 @@ page.onLoadFinished = function(status) {
           if (stock > 0) {
             var url = document.location.origin+jQuery(this).find('h2 > a').attr('href');
             var origin = jQuery(this).find('.field-name-field-country .even a').html();
-            var name = jQuery(this).find('h2 > a').text().toLowerCase();
+            var name = jQuery(this).find('h2 > a').text();
             var price = jQuery(this).find('.field-name-commerce-price .even').html();
             ret.push([name, origin, price, stock, url]);
           }
@@ -69,6 +69,8 @@ page.onLoadFinished = function(status) {
     }
   }
 };
+
+// for ciders: https://legacyliquorstore.com/search/node/cider
 
 var tpl = 'https://legacyliquorstore.com/beer/all?sort_by=title&sort_order=ASC&page=';
 
