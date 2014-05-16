@@ -1,5 +1,5 @@
 function fetchData(callback) {
-  $.getJSON('/mock/beers.json', function(json) {
+  $.getJSON('./mock/beers.json', function(json) {
     initTable(json);
   });
 }
@@ -13,7 +13,7 @@ function getAllItems(callback) {
           _i++;
           collected.push(data);
           if (_i === length) {
-            callback(collected);    
+            callback(collected);
           }
         });
       });
@@ -104,7 +104,7 @@ $('#beer-table').click(function(ev) {
   if (_.contains(ev.target.classList, 'add-link')) {
     ev.preventDefault();
     var selected = beersHashMap[ev.target.id];
-    selected['_id'] = ev.target.id;
+    selected._id = ev.target.id;
 
     localforage.getItem(ev.target.id, function(item) {
       if (!item) {
@@ -114,7 +114,7 @@ $('#beer-table').click(function(ev) {
           console.log('item '+ ev.target.id+' stored!');
           // display the item
           displayItem(ev.target.id, selected);
-        });  
+        });
       }
       else {
         incrementItem(ev.target.id);
