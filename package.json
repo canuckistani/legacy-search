@@ -1,11 +1,20 @@
 {
-    "name": "legacy-scraper",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-      "libyaml": "*",
-      "redis": "*",
-      "hiredis": "*",
-      "underscore": "*"
+  "name": "legacy-scraper",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node bin/server"
+  },
+  "dependencies": {
+    "async": "*",
+    "connect": "^2.15.0",
+    "node-static": "^0.7.3",
+    "phantom": "*",
+    "underscore": "*"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-livereload": "^1.5.0",
+    "connect": "^2.15.0"
   }
 }
