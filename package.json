@@ -5,6 +5,10 @@
   "scripts": {
     "start": "node bin/server"
   },
+  "engines": {
+    "node": "0.10.26",
+    "npm": ">=1.3"
+  },
   "dependencies": {
     "async": "^0.9.0",
     "connect": "^2.15.0",
