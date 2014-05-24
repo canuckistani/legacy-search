@@ -1,11 +1,11 @@
 var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
-    dest = './';
+    dest = './public';
 
 gulp.task('server', function(next) {
   var connect = require('connect'),
       server = connect();
-  server.use(connect.static(dest)).listen(process.env.PORT || 8080, next);
+  server.use(connect.static(dest)).listen(process.env.PORT || 8000, next);
 });
 
 gulp.task('watch', ['server'], function() {
