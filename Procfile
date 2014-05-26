@@ -1,2 +1,2 @@
 web: npm start
-worker: npm ping
+worker: node bin/ping
