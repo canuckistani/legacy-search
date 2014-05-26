@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-var util = require('util'),
-  fs = require('fs'),
-  path = require('path'),
-    _ = require('underscore');
+var util = require('util')
+  , fs = require('fs')
+  , path = require('path')
+  , _ = require('underscore')
+  , log4js = require('log4js');
 
 var L = console.log,
     D = function(o) { L(util.inspect(o)); },
@@ -11,14 +12,31 @@ var L = console.log,
     K = function(o) { return Object.keys(o); },
     A = function(args) { return [].slice.call(args); };
 
+var logDir    = './logs'
+  , logFile   = path.join(logDir, 'debug.log')
+  , errorFile = path.join(logDir, 'exceptions.log');
+
+console.log(logDir, logFile);
+
+log4js.loadAppender('file');
+//log4js.addAppender(log4js.appenders.console());
+log4js.addAppender(log4js.appenders.file(logFile), 'info');
+log4js.addAppender(log4js.appenders.file(errorFile), 'error');
+
+var logger = log4js.getLogger('info');
+logger.setLevel('INFO');
+
+var errorLogger = log4js.getLogger('error');
+
+
 function ping() {
   require('request').get('http://beers.paas.canuckistani.ca/mock/beers.json', function(e, r) {
     if (e) {
-      console.log('Err: '+e); return;
+      errorLogger.error(e);
     }
 
-    console.log(">>> " + JSON.parse(r.body).length);
-
+    // console.log(">>> " + JSON.parse(r.body).length);
+    logger.info('ping: ', JSON.parse(r.body).length);
   });
 }
 
