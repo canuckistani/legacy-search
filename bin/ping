@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+var util = require('util'),
+  fs = require('fs'),
+  path = require('path'),
+    _ = require('underscore');
+
+var L = console.log,
+    D = function(o) { L(util.inspect(o)); },
+    F = function(s) { return util.format.apply(null, arguments); },
+    K = function(o) { return Object.keys(o); },
+    A = function(args) { return [].slice.call(args); };
+
+function ping() {
+  require('request').get('http://beers.paas.canuckistani.ca/mock/beers.json', function(e, r) {
+    if (e) {
+      console.log('Err: '+e); return;
+    }
+
+    console.log(">>> " + JSON.parse(r.body).length);
+
+  });
+}
+
+if (!module.parent) {
+  // this is the main module
+  setInterval(ping, 5000);
+  ping();
+}
