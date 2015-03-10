@@ -1,6 +1,7 @@
 function fetchData(callback) {
   $.getJSON('./mock/beers.json', function(json) {
-    initTable(json);
+    var updated = new Date(json.time).toString();
+    initTable(json.data, updated);
   });
 }
 
@@ -32,20 +33,7 @@ function initStorage(cb) {
 
 var beersHashMap = {};
 
-function initTable(json) {
-  var data = _.map(json, function(a) {
-      var _id = a[0].toLowerCase().replace(/\ /g, '-');
-      a.push(_id);
-      beersHashMap[_id] = {
-        name: a[0],
-        origin: a[1],
-        price: a[2],
-        quantity: a[3],
-        link: a[4],
-      };
-      return a;
-  });
-  
+function render(data, timeString, cb) {
   $('#beer-table').dataTable({
     "iDisplayLength": 60,
     "aaData": data,
@@ -67,6 +55,33 @@ function initTable(json) {
         }
       }
     ]
+  });
+
+  if (cb) {
+    $('#timeString').html(timeString, function() {
+      cb(null, true);  
+    });
+    
+  }
+}
+
+function initTable(raw, timeString) {
+  var data = _.map(raw, function(a) {
+      var _id = a[0].toLowerCase().replace(/\ /g, '-');
+      a.push(_id);
+      beersHashMap[_id] = {
+        name: a[0],
+        origin: a[1],
+        price: a[2],
+        quantity: a[3],
+        link: a[4],
+      };
+      return a;
+  });
+
+  render(data, timeString, function(err) {
+    if (err) throw err;
+    console.log("render completed");
   });
 }
 

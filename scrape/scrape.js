@@ -63,8 +63,12 @@ page.onLoadFinished = function(status) {
       });
     }
     else {
-     console.log(JSON.stringify(collected));
-     // console.log(pp(collected));
+
+      var final = {
+        time: Date.now(),
+        data: collected
+      }
+      console.log(JSON.stringify(final));
       phantom.exit();
     }
   }

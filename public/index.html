@@ -9,11 +9,16 @@
     <!-- Bootstrap CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+    <style type="text/css">
+      .container > div:nth-child(2) {
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
 <body>
 <div class="container">
   <h1 class="text">Search Beers ( Legacy Liquor Store )</h1>
-
+  <div>Data updated: <span id="timeString"></span></div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-8">
       <table cellpadding="0" cellspacing="0" border="0" class="display" id="beer-table"></table>
